@@ -9,7 +9,7 @@ const fs = require('fs')
 
 app.get('/', (req, res) => {
     
-    res.send('working')
+    res.send('API is live!')
 
     res.end()
 })
