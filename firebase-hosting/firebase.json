@@ -1,0 +1,11 @@
+{
+    "hosting": {
+      "rewrites": [{
+        "source": "**",
+        "run": {
+          "serviceId": "symbol-search-api",
+          "region": "me-west1"
+        }
+      }]
+    }
+  }
