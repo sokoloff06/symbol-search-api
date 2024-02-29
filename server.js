@@ -20,11 +20,11 @@ app.get('/keyword/:search/limit/:max', (req, res) => {
     console.log(maxResults)
     if(!isNaN(maxResults)){
         search = search.toLowerCase();
-        const corsWhitelist = [
-            '*.visokolov.com',
-            'stockscape-flutter.web.app'
+        const corsAllowlist = [
+            'https://stockscape.visokolov.com',
+            'https://stockscape-flutter.web.app'
         ];
-        if (corsWhitelist.indexOf(req.headers.origin) !== -1) {
+        if (corsAllowlist.indexOf(req.headers.origin) !== -1) {
             res.header('Access-Control-Allow-Origin', req.headers.origin);
             res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
         }
