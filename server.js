@@ -21,12 +21,16 @@ app.get('/keyword/:search/limit/:max', (req, res) => {
     if(!isNaN(maxResults)){
         search = search.toLowerCase();
         const corsAllowlist = [
-            'https://stockscape.visokolov.com',
-            'https://stockscape-flutter.web.app'
+            'https://stockscape.visokolov.com/',
+            'https://stockscape-flutter.web.app/'
         ];
         if (corsAllowlist.indexOf(req.headers.origin) !== -1) {
+            console.log("Allowed origin detected")
             res.header('Access-Control-Allow-Origin', req.headers.origin);
             res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+        } else {
+            console.log("Allowed origin NOT detected")
+            res.header('Access-Control-Allow-Origin', '*');
         }
         res.setHeader('Content-Type', 'application/json');
         const g  =Ticker.TickerSymbols.filter( f => 
