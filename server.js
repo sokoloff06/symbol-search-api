@@ -8,9 +8,7 @@ const fs = require('fs')
 
 
 app.get('/', (req, res) => {
-    
     res.send('API is live!')
-
     res.end()
 })
 
@@ -22,6 +20,14 @@ app.get('/keyword/:search/limit/:max', (req, res) => {
     console.log(maxResults)
     if(!isNaN(maxResults)){
         search = search.toLowerCase();
+        const corsWhitelist = [
+            '*.visokolov.com',
+            'stockscape-flutter.web.app'
+        ];
+        if (corsWhitelist.indexOf(req.headers.origin) !== -1) {
+            res.header('Access-Control-Allow-Origin', req.headers.origin);
+            res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+        }
         res.setHeader('Content-Type', 'application/json');
         const g  =Ticker.TickerSymbols.filter( f => 
             (JSON.stringify(f).toLowerCase().indexOf(search) !== -1)
